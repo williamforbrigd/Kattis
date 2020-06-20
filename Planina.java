@@ -1,4 +1,4 @@
-package kattis;
+package Solutions;
 
 import java.util.Scanner;
 
