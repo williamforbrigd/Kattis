@@ -10,20 +10,33 @@ public class SymmetricOrder {
 
         int n = Integer.parseInt(reader.readLine());
 
-        if (n != 0) {
+        while(n != 0) {
             String[] names = new String[n];
             for (int i = 0; i < n; i++) {
-                String line = reader.readLine();
-                names[i] = line;
+                names[i] = reader.readLine();
             }
-
+               
+            /*
             for (int i = 0; i < names.length; i++) {
                 for (int j = 0; j < names.length; j++) {
                     if (names[i].length() > names[j].length() && i != j) {
-
+                                                    
                     }
                 }
             }
+            */
+            int x = 1;
+            System.out.println("SET" + x);
+            for(int i = 0; i < Math.ceil(n/2); i+=2) {
+                System.out.println(names[i]);
+                names[i] = "";
+            }
+            for(int i = (int) (n - Math.ceil(n / 2)); i > 0; i--) {
+                System.out.println(names[i]);
+                names[i] = "";
+            }
+            x++;
+            n = Integer.parseInt(reader.readLine());
         }
     }
 }
