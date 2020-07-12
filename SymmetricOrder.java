@@ -1,42 +1,82 @@
 package Solutions;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.BufferedReader;
 
 public class SymmetricOrder {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
+        
+        int x = 1;
         int n = Integer.parseInt(reader.readLine());
-
-        while(n != 0) {
-            String[] names = new String[n];
-            for (int i = 0; i < n; i++) {
+        while(true && n != 0) {
+            if(n==0) break;
+            System.out.println("SET " + x);
+            String[] names = new String[n/2];
+            for(int i = names.length-1; i >=0; i--) {
+                System.out.println(reader.readLine());
                 names[i] = reader.readLine();
             }
-               
-            /*
-            for (int i = 0; i < names.length; i++) {
-                for (int j = 0; j < names.length; j++) {
-                    if (names[i].length() > names[j].length() && i != j) {
-                                                    
-                    }
-                }
+            if(n%2 == 1) {
+                System.out.println(reader.readLine());
             }
-            */
-            int x = 1;
-            System.out.println("SET" + x);
-            for(int i = 0; i < Math.ceil(n/2); i+=2) {
-                System.out.println(names[i]);
-                names[i] = "";
-            }
-            for(int i = (int) (n - Math.ceil(n / 2)); i > 0; i--) {
-                System.out.println(names[i]);
-                names[i] = "";
+            for(String name : names) {
+                System.out.println(name);
             }
             x++;
             n = Integer.parseInt(reader.readLine());
         }
     }
 }
+
+
+/**
+ * The solutions works but gets a runtime error. Bad solution.
+ */
+/*
+public class SymmetricOrder2 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        while(true) {
+            int n = Integer.parseInt(reader.readLine());
+            int x = 1;
+            while(n != 0) {
+                String[] names = new String[n];
+                for (int i = 0; i < n; i++) {
+                    names[i] = reader.readLine();
+                }
+                System.out.println("SET" + x);
+
+                if(n%2 == 0) {
+                    for(int i = 0; i < 2*(n/2); i+=2) {
+                        if(names[i] != "")
+                            System.out.println(names[i]);
+                        names[i] = "";
+                    }
+                    for(int i = n-1; i >=1; i-=2) {
+                        if(names[i] != "")
+                            System.out.println(names[i]);
+                        names[i] = "";
+                    }
+                } else {
+                    for(int i = 0; i < 2*((n/2)+1); i+=2) {
+                        if(names[i] != "")
+                            System.out.println(names[i]);
+                        names[i] = "";
+                    }
+                    for(int i = n-2; i >=1; i-=2) {
+                        if(names[i] != "")
+                            System.out.println(names[i]);
+                        names[i] = "";
+                    }
+                }
+                x++;
+                n = Integer.parseInt(reader.readLine());
+            }
+        }
+        
+    }
+}
+*/
