@@ -1,42 +1,56 @@
 package Solutions;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class SevenWonders {
-    public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String[] line = reader.readLine().split("");
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        char[] arr = sc.next().toCharArray();
 
-        int t = 0, c = 0, g = 0;
-        char[] cards = new char[line.length];
+        int t = 0, c=0, g=0, sum=0;
 
-        for(int i = 0; i < line.length; i++) {
-            cards[i] = line[i].charAt(i);
-            /*
-            if(line[i].equals("T")) t++;
-            else if(line[i].equals("C")) c++;
-            else if(line[i].equals("G")) g++;
-
-             */
+        for(int i=0; i < arr.length; i++) {
+            if(arr[i] == 'T') t++;
+            else if(arr[i] == 'C') c++;
+            else if(arr[i] == 'G') g++;
         }
-        for(int i = 0; i < cards.length; i++) {
-            if(cards[i] == 'T') t++;
-            else if(cards[i] == 'C') c++;
-            else if(cards[i] == 'G') g++;
+        int[] nums = {t,c,g};
+        int smallest = 0;
+        for(int i=0; i < nums.length; i++) {
+            if(t > 0 && c > 0 && g > 0) {
+                smallest = minArr2(nums);
+            }
         }
-        //if(cards.)
 
-        /*
-        int sum = 0;
-        if(t > 0 && g > 0 && c > 0)
-            sum =(int) (Math.pow(t,2) + Math.pow(c,2) + Math.pow(g,2) + 7);
-        else
-            sum =(int) (Math.pow(t,2) + Math.pow(c,2) + Math.pow(g,2));
+        sum += Math.pow(t,2) + Math.pow(c,2) + Math.pow(g,2) + (7*smallest);
+        System.out.println(sum);
+        sc.close();
+    }
 
-         */
+    public static int minArr(int[] arr) {
+        int min = Integer.MAX_VALUE;
+        int i = 0;
+        if(arr == null) {
+            return 0;
+        } else {
+            while(i < arr.length) {
+                if(arr[i] < min) {
+                    min = arr[i];
+                }
+                i++;
+            }
+        }
+        return min;
+    }
 
-
+    public static int minArr2(int[] arr) {
+        if(arr==null) return 0;
+        int min = Integer.MAX_VALUE;
+        for(int i=0; i < arr.length; i++) {
+            if(arr[i] < min) {
+                min = arr[i];
+            }
+        }
+        return min;
     }
 }
